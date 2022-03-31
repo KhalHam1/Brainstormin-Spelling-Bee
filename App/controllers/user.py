@@ -29,12 +29,23 @@ def check_user(username, password):
 
 def get_user(username):
     user = User.query.filter_by(username=username).first()
-    userDict = user.toDict()
-    return int(userDict['id'])
+    if user:
+        userDict = user.toDict()
+        return int(userDict['id'])
+    return None
+    
+
 
 def get_user_object(username):
     user = User.query.filter_by(username=username).first()
     return user
+
+def delete_user(id):
+    user_to_delete = User.query.get(id)
+    db.session.delete(user_to_delete)
+    db.session.commit()
+
+
 
 
     

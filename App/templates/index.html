@@ -1,3 +1,20 @@
+<style>
+    .button {
+        font: bold 18px Arial;
+        text-decoration: none;
+        background-color: rgb(25, 201, 127);
+        color: #333333;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+}
+    .button1 {
+        margin-left: 43%;
+    }
+
+</style>
 {% extends "layout.html" %}
 {% block title %}{% endblock %}
 {% block page %}Brainstormin' Spelling Bee{% endblock %}
@@ -7,4 +24,16 @@
 {% block content %}
     <h1>Brainstormin' Spelling Bee</h1>
     <p>This is a boileplate flask application which follows the MVC pattern for structuring the project.</p>
+
+    <div class="row"> 
+        <!-- <button class="button button1">Log In</button> -->
+        <a class = "button button1" href="/signup">Sign Up</a>
+        <a class = "button" href="/login">Log In</a>    
+        <!-- <form class="col s12 m8 offset-m2">
+            {{ form.csrf_token }}
+            <div class="input-field col s12 m8 offset-m2">
+              {{form.submit}}
+            </div> 
+        </form> -->
+    </div>
 {% endblock %}

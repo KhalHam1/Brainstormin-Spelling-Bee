@@ -6,46 +6,50 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, EqualTo, Email
 
 
-#login_manager.init_app(app)
-# login_manager.init_app(app)
-
-''' Begin Flask Login Functions '''
-# login_manager = LoginManager()
-login_manager = LoginManager()
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(user_id)
-
-''' End Flask Login Functions '''
-
 from App.controllers import (
     create_user, 
     get_all_users,
     get_all_users_json,
     check_user,
     get_user,
-    get_user_object
+    get_user_object,
+    delete_user
 )
 
 class SignUp(FlaskForm):
     username = StringField('username', validators=[InputRequired()])
-    email = StringField('email', validators=[Email(), InputRequired()])
     password = PasswordField('New Password', validators=[InputRequired(), EqualTo('confirm', message='Passwords Must Match')])
     confirm = PasswordField('Repeat Password')
     submit = SubmitField('Sign Up', render_kw={'class': 'btn waves-effect waves-light white-text'})
 
 class LogIn(FlaskForm):
   username = StringField('username', validators=[InputRequired()])
-  password = PasswordField('New Password', validators=[InputRequired()])
+  password = PasswordField('Password', validators=[InputRequired()])
   submit = SubmitField('Login', render_kw={'class': 'btn waves-effect waves-light white-text'})
+
+class login_button(FlaskForm):
+  submit = SubmitField('Login', render_kw={'class': 'btn waves-effect waves-light white-text'})
+
+class signup_button(FlaskForm):
+  submit = SubmitField('Sign Up', render_kw={'class': 'btn waves-effect waves-light white-text'})
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
 
+@user_views.route('/', methods=['GET'])
+def display_home():
+    form=signup_button()
+    return render_template('index.html', form=form)
+
+# @user_views.route('/', methods=['POST'])
+# def display_home_action1():
+#     form = signup_button()
+#     return render_template('signup.html',form=form)
 
 @user_views.route('/users', methods=['GET'])
 def get_user_page():
     users = get_all_users()
     return render_template('users.html', users=users)
+
 
 @user_views.route('/api/users')
 def client_app():
@@ -62,6 +66,11 @@ def signUpAction():
     form = SignUp()
     if form.validate_on_submit():
         data = request.form
+        old_user = get_user(username = data['username'])
+        if old_user:
+            flash('User Already Exists.')
+            return render_template('signup.html', form=form)
+   
         new_user = create_user(username = data['username'], password=data['password'])
         # new_user.set_password(data['password'])
         flash('Account Created!')
@@ -79,7 +88,6 @@ def login():
     return render_template('login.html', form=form)
 
 @user_views.route('/login', methods=['POST'])
-@login_manager.user_loader
 def loginAction():
     form = LogIn()
     if form.validate_on_submit():
@@ -88,14 +96,26 @@ def loginAction():
         if success:
             flash('Logged In Successfully.')
             user = get_user(data['username'])
+            # userId = user
             print(user)
             user_object = get_user_object(data['username'])
             #login_user(user_object)
-            return render_template('login.html', form=form)
-        flash('Login Failed')
+            return render_template('difficulty.html', form=form)
+        flash('Invalid Credentials')
         return render_template('login.html', form=form)
 
-        
+
+@user_views.route('/delete/<int:id>')  
+def delete(id):
+    form=signup_button()
+    try:
+        delete_user(id) 
+        flash('User deleted successfully')
+        return render_template('index.html', form = form)
+    except:
+        flash('User was not deleted.')
+        return render_template('index.html', form = form)
+         
 
 # @app.route('/login', methods=['POST'])
 # def loginAction():
