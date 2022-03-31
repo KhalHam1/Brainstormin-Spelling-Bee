@@ -21,6 +21,10 @@ def client_app():
     users = get_all_users_json()
     return jsonify(users)
 
+@user_views.route('/login')
+def login():
+    return render_template('login.html')
+
 @user_views.route('/api/lol')
 def lol():
     return 'lol'
