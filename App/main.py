@@ -44,6 +44,8 @@ def loadConfig(app, config):
 
 def create_app(config={}):
     app = Flask(__name__, static_url_path='/static')
+    #login_manager = LoginManager()
+    # login_manager.init_app(app)
     CORS(app)
     loadConfig(app, config)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
