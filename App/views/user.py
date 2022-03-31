@@ -25,6 +25,10 @@ def client_app():
 def login():
     return render_template('login.html')
 
+@user_views.route('/signup')
+def signup():
+    return render_template('signup.html')
+
 @user_views.route('/api/lol')
 def lol():
     return 'lol'
