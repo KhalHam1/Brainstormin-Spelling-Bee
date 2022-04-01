@@ -11,7 +11,8 @@ from datetime import timedelta
 from App.database import create_db, get_migrate
 
 from App.controllers import (
-    setup_jwt
+    setup_jwt,
+    login_manager
 )
 
 from App.views import (
@@ -29,6 +30,11 @@ def add_views(app, views):
     for view in views:
         app.register_blueprint(view)
 
+''' Begin Flask Login Functions '''
+# login_manager = LoginManager()
+
+''' End Flask Login Functions '''
+
 
 def loadConfig(app, config):
     app.config['ENV'] = os.environ.get('ENV', 'DEVELOPMENT')
@@ -45,6 +51,7 @@ def loadConfig(app, config):
 
 def create_app(config={}):
     app = Flask(__name__, static_url_path='/static')
+    login_manager.init_app(app)
     CORS(app)
     loadConfig(app, config)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

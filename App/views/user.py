@@ -13,7 +13,8 @@ from App.controllers import (
     check_user,
     get_user,
     get_user_object,
-    delete_user
+    delete_user,
+    load_user
 )
 
 class SignUp(FlaskForm):
@@ -94,12 +95,14 @@ def loginAction():
         data = request.form
         success = check_user(data['username'],data['password'])
         if success:
-            flash('Logged In Successfully.')
             user = get_user(data['username'])
             # userId = user
             print(user)
+            userLoggedIn = load_user(user)
+            print("userLoggedIn = ", userLoggedIn.toDict())
             user_object = get_user_object(data['username'])
-            #login_user(user_object)
+            login_user(userLoggedIn)
+            flash('Logged In Successfully')
             return render_template('difficulty.html', form=form)
         flash('Invalid Credentials')
         return render_template('login.html', form=form)

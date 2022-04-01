@@ -1,7 +1,24 @@
 from App.models import User
 from App.database import db
-from flask_login import UserMixin, LoginManager
+from flask_login import UserMixin, LoginManager, login_user, current_user
+# from App.main import login_manager
 
+
+
+login_manager = LoginManager()
+# ''' Begin Flask Login Functions '''
+#login_manager = LoginManager()
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+# ''' End Flask Login Functions '''
+
+def get_loggedin_user():
+    # return current_user.username
+    # if current_user.
+    # return login_manager
+    pass
 
 def get_all_users():
     return User.query.all()
@@ -34,7 +51,6 @@ def get_user(username):
         return int(userDict['id'])
     return None
     
-
 
 def get_user_object(username):
     user = User.query.filter_by(username=username).first()
