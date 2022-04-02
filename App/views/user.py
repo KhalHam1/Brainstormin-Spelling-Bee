@@ -96,7 +96,6 @@ def loginAction():
         success = check_user(data['username'],data['password'])
         if success:
             user = get_user(data['username'])
-            # userId = user
             print(user)
             userLoggedIn = load_user(user)
             print("userLoggedIn = ", userLoggedIn.toDict())
@@ -107,6 +106,14 @@ def loginAction():
         flash('Invalid Credentials')
         return render_template('login.html', form=form)
 
+
+@user_views.route('/logout', methods=['GET'])
+@login_required
+def logout():
+    form=signup_button()
+    logout_user()
+    flash('Logged Out')
+    return render_template('index.html', form=form)
 
 @user_views.route('/delete/<int:id>')  
 def delete(id):
@@ -119,19 +126,6 @@ def delete(id):
         flash('User was not deleted.')
         return render_template('index.html', form = form)
          
-
-# @app.route('/login', methods=['POST'])
-# def loginAction():
-#   form = LogIn()
-#   if form.validate_on_submit():
-#     data = request.form
-#     user = User.query.filter_by(username = data['username']).first()
-#     if user and user.check_password(data['password']):
-#       flash('Logged in successfully.')
-#       login_user(user)
-#       return redirect(url_for('todos'))
-#   flash('Invalid Credentials')
-#   return redirect(url_for('index'))
 
 @user_views.route('/api/lol')
 def lol():
