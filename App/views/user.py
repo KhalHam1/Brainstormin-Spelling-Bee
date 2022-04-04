@@ -14,7 +14,9 @@ from App.controllers import (
     get_user,
     get_user_object,
     delete_user,
-    load_user
+    load_user,
+    print_all_words,
+    get_all_words_json
 )
 
 class SignUp(FlaskForm):
@@ -48,8 +50,10 @@ def display_home():
 
 @user_views.route('/users', methods=['GET'])
 def get_user_page():
-    users = get_all_users()
-    return render_template('users.html', users=users)
+    form=signup_button()
+    users = get_all_users_json()
+    print(users)
+    return render_template('index.html', form=form)
 
 
 @user_views.route('/api/users')
@@ -102,9 +106,13 @@ def loginAction():
             user_object = get_user_object(data['username'])
             login_user(userLoggedIn)
             flash('Logged In Successfully')
-            return render_template('difficulty.html', form=form)
+            return render_template('home.html')
         flash('Invalid Credentials')
         return render_template('login.html', form=form)
+
+# @user_views.route('/start', method=['GET'])
+# def startGame():
+#     return render_template('difficulty.html')
 
 
 @user_views.route('/logout', methods=['GET'])
@@ -114,6 +122,31 @@ def logout():
     logout_user()
     flash('Logged Out')
     return render_template('index.html', form=form)
+
+@user_views.route('/easy', methods=['GET'])
+@login_required
+def easySelected():
+    return render_template('game.html')
+
+@user_views.route('/medium', methods=['GET'])
+@login_required
+def mediumSelected():
+    return render_template('game.html')
+
+@user_views.route('/hard', methods=['GET'])
+@login_required
+def hardSelected():
+    return render_template('game.html')
+
+@user_views.route('/highscores', methods=['GET'])
+@login_required
+def highscores():
+    return render_template('highscore.html')
+
+@user_views.route('/difficulty', methods=['GET'])
+@login_required
+def select_difficulty():
+    return render_template('difficulty.html')
 
 @user_views.route('/delete/<int:id>')  
 def delete(id):
@@ -125,6 +158,27 @@ def delete(id):
     except:
         flash('User was not deleted.')
         return render_template('index.html', form = form)
+
+@user_views.route('/loadwords')
+def load():
+    #get_all_words()
+    form=signup_button()
+    # print("Words added to database.")
+    wordList = print_all_words()
+    print(wordList)
+    print("Words added successflly.")
+    flash('Words Added Successfully.')
+    return render_template('index.html', form=form)
+
+@user_views.route('/getWords')
+def get_words():
+    form = signup_button()
+    words = get_all_words_json()
+    print(words)
+    flash('Words displayed.')
+    return render_template('index.html', form = form)
+    
+
          
 
 @user_views.route('/api/lol')
@@ -134,3 +188,4 @@ def lol():
 @user_views.route('/static/users')
 def static_user_page():
   return send_from_directory('static', 'static-user.html')
+

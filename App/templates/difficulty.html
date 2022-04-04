@@ -1,14 +1,29 @@
+<style>
+   .button {
+       font: bold 18px Arial;
+       text-decoration: none;
+       background-color: rgb(25, 201, 127);
+       color: #333333;
+       padding: 2px 6px 2px 6px;
+       border-top: 1px solid black;
+       border-right: 1px solid black;
+       border-bottom: 1px solid black;
+       border-left: 1px solid black;
+}
+   .button1 {
+       margin-left: 43%;
+   }
+
+</style>
 {% extends "layout.html" %}
 {% block title %}{% endblock %}
 {% block page %}Brainstormin' Spelling Bee{% endblock %}
 
 {{ super() }}
-
 {% block content %}
-{% if current_user.is_authenticated %}
-   <h3> Hi {{ current_user.username }}! </h3>
-{% endif %}
-<h1>Users Select the Difficulty here.</h1>
-
+<h1>Difficulty</h1>
+<a class = "button" href="/easy">Easy</a>  
+<a class = "button" href="/medium">Medium</a>  
+<a class = "button" href="/hard">Hard</a> 
 </div>
 {% endblock %}

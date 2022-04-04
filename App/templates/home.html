@@ -1,10 +1,27 @@
+<style>
+    .button {
+        font: bold 18px Arial;
+        text-decoration: none;
+        background-color: rgb(25, 201, 127);
+        color: #333333;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid black;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        border-left: 1px solid black;
+}
+    .button1 {
+        margin-left: 43%;
+    }
+
+</style>
 {% extends "layout.html" %}
 {% block title %}Backend App{% endblock %}
 {% block page %}Backend App{% endblock %}
 
 {{ super() }}
-
 {% block content %}
-    <h1>Hello! This view is partially rendered on the server using jinja</h1>
-    <h2>It must be dynamically served</h2>
+    <h1>Main Menu</h1>
+    <a class = "button" href="/difficulty">Start Game</a>  
+    <a class = "button" href="/highscores">High Score</a>  
 {% endblock %}
