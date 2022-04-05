@@ -64,7 +64,7 @@ def client_app():
 @user_views.route('/signup', methods=['GET'])
 def signup():
     form = SignUp()
-    return render_template('signup.html', form=form)
+    return render_template('signup.html', form=form)    #('signup.html', form=form)
 
 @user_views.route('/signup', methods=['POST'])
 def signUpAction():
@@ -76,7 +76,7 @@ def signUpAction():
             flash('User Already Exists.')
             return render_template('signup.html', form=form)
    
-        new_user = create_user(username = data['username'], password=data['password'])
+        new_user = create_user(username = data['username'], password=data['password'], highscore=0)
         # new_user.set_password(data['password'])
         flash('Account Created!')
         user = get_user(data['username'])
@@ -89,26 +89,36 @@ def signUpAction():
 
 @user_views.route('/login')
 def login():
-    form = LogIn()
-    return render_template('login.html', form=form)
+    if current_user and current_user.is_authenticated:
+        return render_template('home.html')
+    else:
+        form = LogIn()
+        return render_template('login.html', form=form)
+    
 
 @user_views.route('/login', methods=['POST'])
 def loginAction():
-    form = LogIn()
-    if form.validate_on_submit():
-        data = request.form
-        success = check_user(data['username'],data['password'])
-        if success:
-            user = get_user(data['username'])
-            print(user)
-            userLoggedIn = load_user(user)
-            print("userLoggedIn = ", userLoggedIn.toDict())
-            user_object = get_user_object(data['username'])
-            login_user(userLoggedIn)
-            flash('Logged In Successfully')
+    if current_user and current_user.is_authenticated:
+        return render_template('home.html')
+    else:
+        form = LogIn()
+        if form.validate_on_submit():
+            data = request.form
+            success = check_user(data['username'],data['password'])
+            if success:
+                user = get_user(data['username'])
+                print(user)
+                userLoggedIn = load_user(user)
+                print("userLoggedIn = ", userLoggedIn.toDict())
+                user_object = get_user_object(data['username'])
+                login_user(userLoggedIn)
+                flash('Logged In Successfully')
+                return render_template('home.html')
+            flash('Invalid Credentials')
+            return render_template('login.html', form=form)
+        else:
             return render_template('home.html')
-        flash('Invalid Credentials')
-        return render_template('login.html', form=form)
+    
 
 # @user_views.route('/start', method=['GET'])
 # def startGame():
@@ -147,6 +157,11 @@ def highscores():
 @login_required
 def select_difficulty():
     return render_template('difficulty.html')
+
+@user_views.route('/home', methods=['GET'])
+@login_required
+def go_home():
+    return render_template('home.html')
 
 @user_views.route('/delete/<int:id>')  
 def delete(id):

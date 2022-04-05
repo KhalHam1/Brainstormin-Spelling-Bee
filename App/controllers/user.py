@@ -23,8 +23,8 @@ def get_loggedin_user():
 def get_all_users():
     return User.query.all()
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
+def create_user(username, password, highscore):
+    newuser = User(username=username, password=password, highscore=highscore)
     db.session.add(newuser)
     db.session.commit()
 

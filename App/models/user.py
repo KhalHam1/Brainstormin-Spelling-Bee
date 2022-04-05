@@ -6,19 +6,19 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
-    # highscore = db.Column(db.Integer)
+    highscore = db.Column(db.Integer)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, highscore):
         self.username = username
         self.set_password(password)
-        # self.highscore = this.highscore
+        self.highscore = highscore
 
 
     def toDict(self):
         return{
             'id': self.id,
             'username': self.username,
-            # 'highscore: ': self.highscore
+            'highscore: ': self.highscore
         }
 
     def set_password(self, password):
