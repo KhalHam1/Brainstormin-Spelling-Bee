@@ -48,7 +48,7 @@ def display_home():
 #     form = signup_button()
 #     return render_template('signup.html',form=form)
 
-@user_views.route('/users')
+@user_views.route('/users', methods=['GET'])
 def get_user_page():
     form=signup_button()
     users = get_all_users_json()
@@ -61,7 +61,7 @@ def client_app():
     users = get_all_users_json()
     return jsonify(users)
 
-@user_views.route('/signup')
+@user_views.route('/signup', methods=['GET'])
 def signup():
     form = SignUp()
     return render_template('signup.html', form=form)    #('signup.html', form=form)
@@ -87,7 +87,7 @@ def signUpAction():
     return render_template('signup.html', form=form)
     # return redirect(url_for('signup'))
 
-@user_views.route('/login')
+@user_views.route('/login', methods=['GET'])
 def login():
     if current_user and current_user.is_authenticated:
         return render_template('home.html')
@@ -133,32 +133,32 @@ def logout():
     flash('Logged Out')
     return render_template('index.html', form=form)
 
-@user_views.route('/easy')
+@user_views.route('/easy', methods=['GET'])
 @login_required
 def easySelected():
     return render_template('game.html')
 
-@user_views.route('/medium')
+@user_views.route('/medium', methods=['GET'])
 @login_required
 def mediumSelected():
-    return render_template('game.html')
+    return render_template('game.html', methods=['GET'])
 
 @user_views.route('/hard')
 @login_required
 def hardSelected():
     return render_template('game.html')
 
-@user_views.route('/highscores')
+@user_views.route('/highscores', methods=['GET'])
 @login_required
 def highscores():
     return render_template('highscore.html')
 
-@user_views.route('/difficulty')
+@user_views.route('/difficulty', methods=['GET'])
 @login_required
 def select_difficulty():
     return render_template('difficulty.html')
 
-@user_views.route('/home')
+@user_views.route('/home', methods=['GET'])
 @login_required
 def go_home():
     return render_template('home.html')
