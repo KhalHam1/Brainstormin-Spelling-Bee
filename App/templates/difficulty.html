@@ -1,29 +1,95 @@
-<style>
-   .button {
-       font: bold 18px Arial;
-       text-decoration: none;
-       background-color: rgb(25, 201, 127);
-       color: #333333;
-       padding: 2px 6px 2px 6px;
-       border-top: 1px solid black;
-       border-right: 1px solid black;
-       border-bottom: 1px solid black;
-       border-left: 1px solid black;
-}
-   .button1 {
-       margin-left: 43%;
-   }
-
-</style>
 {% extends "layout.html" %}
 {% block title %}{% endblock %}
 {% block page %}Brainstormin' Spelling Bee{% endblock %}
 
 {{ super() }}
 {% block content %}
-<h1>Difficulty</h1>
-<a class = "button" href="/easy">Easy</a>  
-<a class = "button" href="/medium">Medium</a>  
-<a class = "button" href="/hard">Hard</a> 
+
+<style>
+    .flexbox-container{
+        margin-left: 30%;
+        width:600px;
+        height:100%;
+        flex-direction: column;
+        /* border: 3px solid black; */
+        display: flex;
+        justify-content:center;/*determines where on the main axis the flexboxes will be located */
+        /*align-items:center;*/ /*Determines how flexbox items are aligned in the flex container*/
+
+    }
+
+    .flexbox-item{
+        width:500px;
+        height:100px;
+        padding:10px;
+        /* border: 3px solid black; */
+        margin-top:10px;
+        margin-bottom:10px;
+        margin-left:10px;
+        margin-right:10px;
+    }
+
+    .flexbox-item-2{
+        width:500px;
+        height:100px;
+        padding:10px;
+        /* border: 3px solid black; */
+        margin-top:30px;
+        margin-bottom:10px;
+        margin-left:20px;
+        margin-right:10px;
+    }
+
+    .button {
+        font: 24px Forte;
+        text-decoration: none;
+        width:200px;
+        height:70px;
+        background-color: hsl(59, 85%, 51%);
+        color: hsl(0, 0%, 24%);
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-left:120px;
+        padding-right:120px;
+        /* padding: 2px 6px 2px 6px; */
+        border-top: 1px solid hsl(0, 0%, 24%);
+        border-right: 1px solid hsl(0, 0%, 24%);
+        border-bottom: 1px solid hsl(0, 0%, 24%);
+        border-left: 1px solid hsl(0, 0%, 24%);
+    }
+
+    .button:hover{
+        font: 24px Forte;
+        text-decoration: none;
+        width:200px;
+        height:70px;
+        background-color: hsl(59, 85%, 51%);
+        color: hsl(0, 0%, 24%);
+        padding-top:15px;
+        padding-bottom:15px;
+        padding-left:125px;
+        padding-right:125px;
+        /* padding: 2px 6px 2px 6px; */
+        border-top: 3px solid hsl(0, 0%, 24%);
+        border-right: 3px solid hsl(0, 0%, 24%);
+        border-bottom: 3px solid hsl(0, 0%, 24%);
+        border-left: 3px solid hsl(0, 0%, 24%);
+    }
+    .button1 {
+        margin-left: 43%;
+    }
+
+</style>
+<div class="flexbox-container">
+<h3>Select Your Difficulty</h3>
+<div class="flexbox-item">
+<a class = "button" href="/easy">Elementary</a>  
+</div>
+<div class="flexbox-item-2">
+<a class = "button" href="/medium">Secondary</a>  
+</div>
+<div class="flexbox-item-2">
+<a class = "button" style="margin-left:5px;" href="/hard">University</a> 
+</div>
 </div>
 {% endblock %}

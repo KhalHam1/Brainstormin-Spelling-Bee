@@ -5,8 +5,88 @@
 {{ super() }}
 
 {% block content %}
-<h1>Users Will Log In here.</h1>
-<div class="row">
+
+<style>
+  .flexbox-container{
+    background-color: hsl(10, 27%, 96%);
+    margin-top: 100px;
+    margin-left: 25%;
+    width:600px;
+    height:100%;
+    /* padding:70px; */
+    padding-top:50px;
+    padding-bottom:50px;
+    padding-left:50px;
+    padding-right:50px;
+    flex-direction: column;
+    border: 3px solid hsl(0, 0%, 24%);
+    display: flex;
+    justify-content:center;/*determines where on the main axis the flexboxes will be located */
+    /*align-items:center;*/ /*Determines how flexbox items are aligned in the flex container*/
+
+  }
+
+  .flexbox-item{
+    width:500px;
+    height:100px;
+    padding:10px;
+    /* border: 3px solid black; */
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left:10px;
+    margin-right:10px;
+  }
+
+  .flexbox-item-2{
+    width:500px;
+    height:100px;
+    padding:10px;
+    /* border: 3px solid black; */
+    margin-top:30px;
+    margin-bottom:10px;
+    margin-left:20px;
+    margin-right:10px;
+  }
+
+  .button {
+    font: 24px Forte;
+    text-decoration: none;
+    width:100px;
+    height:50px;
+    background-color: hsl(59, 85%, 51%);
+    color: hsl(0, 0%, 24%);
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
+    /* padding: 2px 6px 2px 6px; */
+    border-top: 1px solid hsl(0, 0%, 24%);
+    border-right: 1px solid hsl(0, 0%, 24%);
+    border-bottom: 1px solid hsl(0, 0%, 24%);
+    border-left: 1px solid hsl(0, 0%, 24%);
+  }
+
+  .button:hover{
+    font: 24px Forte;
+    text-decoration: none;
+    width:100px;
+    height:50px;
+    background-color: hsl(59, 85%, 51%);
+    color: hsl(0, 0%, 24%);
+    padding-top:10px;
+    padding-bottom:15px;
+    padding-left:15px;
+    padding-right:15px;
+    /* padding: 2px 6px 2px 6px; */
+    border-top: 3px solid hsl(0, 0%, 24%);
+    border-right: 3px solid hsl(0, 0%, 24%);
+    border-bottom: 3px solid hsl(0, 0%, 24%);
+    border-left: 3px solid hsl(0, 0%, 24%);
+  }
+  </style>
+
+<div class="flexbox-container">
+<h3 style="text-align:center;">Login</h3>
       
     <form class="col s12 m8 offset-m2" method="POST" action="/login">
         {{ form.csrf_token }}
@@ -21,7 +101,7 @@
           {{ form.password.label }}
         </div>
 
-        <div class="input-field col s12 m8 offset-m2">
+        <div class="input-field col s12 m8 offset-m2" style="margin-left:200px;">
           {{form.submit}}
         </div> 
     </form>

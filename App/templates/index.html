@@ -1,15 +1,73 @@
 <style>
+    .flexbox-container{
+        margin-left: 55%;
+        width:600px;
+        height:100%;
+        flex-direction: column;
+        /* border: 3px solid black; */
+        display: flex;
+        justify-content:center;/*determines where on the main axis the flexboxes will be located */
+        /*align-items:center;*/ /*Determines how flexbox items are aligned in the flex container*/
+
+    }
+
+    .flexbox-item{
+        width:500px;
+        height:100px;
+        padding:10px;
+        /* border: 3px solid black; */
+        margin-top:10px;
+        margin-bottom:10px;
+        margin-left:10px;
+        margin-right:10px;
+    }
+
+    .flexbox-item-2{
+        width:500px;
+        height:100px;
+        padding:10px;
+        /* border: 3px solid black; */
+        margin-top:30px;
+        margin-bottom:10px;
+        margin-left:20px;
+        margin-right:10px;
+    }
+
     .button {
-        font: bold 18px Arial;
+        font: 24px Forte;
         text-decoration: none;
-        background-color: rgb(25, 201, 127);
-        color: #333333;
-        padding: 2px 6px 2px 6px;
-        border-top: 1px solid black;
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
-        border-left: 1px solid black;
-}
+        width:200px;
+        height:70px;
+        background-color: hsl(59, 85%, 51%);
+        color: hsl(0, 0%, 24%);
+        padding-top:10px;
+        padding-bottom:10px;
+        padding-left:120px;
+        padding-right:120px;
+        /* padding: 2px 6px 2px 6px; */
+        border-top: 1px solid hsl(0, 0%, 24%);
+        border-right: 1px solid hsl(0, 0%, 24%);
+        border-bottom: 1px solid hsl(0, 0%, 24%);
+        border-left: 1px solid hsl(0, 0%, 24%);
+    }
+
+    .button:hover{
+        font: 24px Forte;
+        text-decoration: none;
+        width:200px;
+        height:70px;
+        background-color: hsl(59, 85%, 51%);
+        color: hsl(0, 0%, 24%);
+        padding-top:15px;
+        padding-bottom:15px;
+        padding-left:125px;
+        padding-right:125px;
+        /* padding: 2px 6px 2px 6px; */
+        border-top: 3px solid hsl(0, 0%, 24%);
+        border-right: 3px solid hsl(0, 0%, 24%);
+        border-bottom: 3px solid hsl(0, 0%, 24%);
+        border-left: 3px solid hsl(0, 0%, 24%);
+    }
     .button1 {
         margin-left: 43%;
     }
@@ -17,17 +75,19 @@
 </style>
 {% extends "layout.html" %}
 {% block title %}{% endblock %}
-{% block page %}Brainstormin' Spelling Bee{% endblock %}
+{% block page %}Welcome!{% endblock %}
 
 {{ super() }}
 
 {% block content %}
-    <h1>Brainstormin' Spelling Bee</h1>
-    <p>This is a boileplate flask application which follows the MVC pattern for structuring the project.</p>
-
-    <div class="row"> 
+    <!-- <h1>Brainstormin' Spelling Bee</h1>
+    <p>This is a boileplate flask application which follows the MVC pattern for structuring the project.</p> -->
+ <div class="flexbox-container">
+    <div class="flexbox-item"> 
         <!-- <button class="button button1">Log In</button> -->
-        <a class = "button button1" href="/signup">Sign Up</a>
+        <a class = "button" href="/signup">Sign Up</a>
+    </div>
+    <div class="flexbox-item-2">
         <a class = "button" href="/login">Log In</a>    
         <!-- <form class="col s12 m8 offset-m2">
             {{ form.csrf_token }}
@@ -36,4 +96,5 @@
             </div> 
         </form> -->
     </div>
+</div>
 {% endblock %}

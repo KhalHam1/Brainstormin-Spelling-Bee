@@ -23,12 +23,12 @@ class SignUp(FlaskForm):
     username = StringField('username', validators=[InputRequired()])
     password = PasswordField('New Password', validators=[InputRequired(), EqualTo('confirm', message='Passwords Must Match')])
     confirm = PasswordField('Repeat Password')
-    submit = SubmitField('Sign Up', render_kw={'class': 'btn waves-effect waves-light white-text'})
+    submit = SubmitField('Sign Up', render_kw={'class': 'button'})
 
 class LogIn(FlaskForm):
   username = StringField('username', validators=[InputRequired()])
   password = PasswordField('Password', validators=[InputRequired()])
-  submit = SubmitField('Login', render_kw={'class': 'btn waves-effect waves-light white-text'})
+  submit = SubmitField('Login', render_kw={'class': 'button'})
 
 class login_button(FlaskForm):
   submit = SubmitField('Login', render_kw={'class': 'btn waves-effect waves-light white-text'})
@@ -112,7 +112,7 @@ def loginAction():
                 print("userLoggedIn = ", userLoggedIn.toDict())
                 user_object = get_user_object(data['username'])
                 login_user(userLoggedIn)
-                flash('Logged In Successfully')
+                # flash('Logged In Successfully')
                 return render_template('home.html')
             flash('Invalid Credentials')
             return render_template('login.html', form=form)
@@ -130,7 +130,7 @@ def loginAction():
 def logout():
     form=signup_button()
     logout_user()
-    flash('Logged Out')
+    # flash('Logged Out')
     return render_template('index.html', form=form)
 
 @user_views.route('/easy', methods=['GET'])
