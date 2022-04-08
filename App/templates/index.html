@@ -1,36 +1,70 @@
 <style>
     .flexbox-container{
-        margin-left: 55%;
-        width:600px;
-        height:100%;
-        flex-direction: column;
+        /* margin-left: 55%; */
+        /* display: flex; */
+        display:flex;
         /* border: 3px solid black; */
-        display: flex;
-        justify-content:center;/*determines where on the main axis the flexboxes will be located */
-        /*align-items:center;*/ /*Determines how flexbox items are aligned in the flex container*/
+        min-width: 1400px;
+        padding-top: 10px;
+        padding-right: 10px;
+        /* min-width: 1200px; */
+        /* justify-content:center; */
+        /*justify-content:center;*//*determines where on the main axis the flexboxes will be located */
+        /*align-items:flex-start;*/ /*Determines how flexbox items are aligned in the flex container*/
 
     }
-
     .flexbox-item{
-        width:500px;
+        /* width:110%; */
+        /* height:100%; */
+        flex-direction:row;
+        
+    }
+
+    .flexbox-image{
+        float:left;
+        padding-top:50px;
+        /* background-color: hsl(203, 37%, 75%); */
+        /* margin-right: 20%; */
+        /* margin-right: 100px; */
+        /* border: 3px double hsl(0, 0%, 24%); */
+        /* border-style: ; */
+        /* margin-top:10px;
+        margin-bottom:10px;
+        margin-left:10px;
+        margin-right:100px; */
+        /* align-self: flex-start; */
+    }
+
+    .flexbox-item-1{
+        width: 200px;
+        padding-top: 300px;
+        /* float:right; */
+        /* width:500px;
         height:100px;
         padding:10px;
-        /* border: 3px solid black; */
+        border: 3px solid black;
         margin-top:10px;
         margin-bottom:10px;
         margin-left:10px;
-        margin-right:10px;
+        margin-right:10px; */
+        /* align-self: flex-end; */
     }
 
     .flexbox-item-2{
-        width:500px;
+        width: 200px;
+        padding-top: 300px;
+        /* margin-top: 300px; */
+        /* float:right; */
+        margin-left: 10px;
+        /* width:500px;
         height:100px;
         padding:10px;
-        /* border: 3px solid black; */
+        border: 3px solid black;
         margin-top:30px;
         margin-bottom:10px;
         margin-left:20px;
-        margin-right:10px;
+        margin-right:10px; */
+        /* align-self: flex-end; */
     }
 
     .button {
@@ -42,8 +76,8 @@
         color: hsl(0, 0%, 24%);
         padding-top:10px;
         padding-bottom:10px;
-        padding-left:120px;
-        padding-right:120px;
+        padding-left:40px;
+        padding-right:40px;
         /* padding: 2px 6px 2px 6px; */
         border-top: 1px solid hsl(0, 0%, 24%);
         border-right: 1px solid hsl(0, 0%, 24%);
@@ -60,8 +94,8 @@
         color: hsl(0, 0%, 24%);
         padding-top:15px;
         padding-bottom:15px;
-        padding-left:125px;
-        padding-right:125px;
+        padding-left:45px;
+        padding-right:45px;
         /* padding: 2px 6px 2px 6px; */
         border-top: 3px solid hsl(0, 0%, 24%);
         border-right: 3px solid hsl(0, 0%, 24%);
@@ -75,7 +109,7 @@
 </style>
 {% extends "layout.html" %}
 {% block title %}{% endblock %}
-{% block page %}Welcome!{% endblock %}
+{% block page %}Welcome to...{% endblock %}
 
 {{ super() }}
 
@@ -84,13 +118,15 @@
     <p>This is a boileplate flask application which follows the MVC pattern for structuring the project.</p> -->
 
  <div class="flexbox-container">
-    <!-- <img src="https://github.com/KhalHam1/Brainstormin-Spelling-Bee/blob/c43fdbda4a9373be348034f220dd6ed2807d0ffe/App/templates/BrainStorm%20Logo2.png" alt="Logo" width="500" height="600"> -->
-    <div class="flexbox-item"> 
+    <div class="flexbox-image">
+    <img src= "{{ url_for('static', filename='BrainStormLogo2.png') }}" alt="Logo" width="750" height="550">
+    </div>
+    <div class="flexbox-item flexbox-item-1"> 
         <!-- <button class="button button1">Log In</button> -->
         <a class = "button" href="/signup">Sign Up</a>
     </div>
-    <div class="flexbox-item-2">
-        <a class = "button" href="/login">Log In</a>    
+    <div class="flexbox-item flexbox-item-2">
+        <a class = "button" style="padding-right:50px;" href="/login">Log In</a>    
         <!-- <form class="col s12 m8 offset-m2">
             {{ form.csrf_token }}
             <div class="input-field col s12 m8 offset-m2">
