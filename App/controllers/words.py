@@ -54,4 +54,29 @@ def get_all_words_json():
         return []
     words = [word.toDict() for word in words]
     return words
+
+def get_easy_words_json():
+    easyWords = []
+    easyWords = Word.query.filter_by(difficulty='easy')
+    if not easyWords:
+        return []
+    easyWords = [word.toDict() for word in easyWords]
+    return easyWords
+
+def get_medium_words_json():
+    mediumWords = []
+    mediumWords = Word.query.filter_by(difficulty='medium')
+    if not mediumWords:
+        return []
+    mediumWords = [word.toDict() for word in mediumWords]
+    return mediumWords
+
+
+def get_hard_words_json():
+    hardWords = []
+    hardWords = Word.query.filter_by(difficulty='hard')
+    if not hardWords:
+        return []
+    hardWords = [word.toDict() for word in hardWords]
+    return hardWords
    

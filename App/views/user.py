@@ -16,7 +16,10 @@ from App.controllers import (
     delete_user,
     load_user,
     print_all_words,
-    get_all_words_json
+    get_all_words_json,
+    get_easy_words_json,
+    get_medium_words_json,
+    get_hard_words_json
 )
 
 class SignUp(FlaskForm):
@@ -136,17 +139,41 @@ def logout():
 @user_views.route('/easy', methods=['GET'])
 @login_required
 def easySelected():
-    return render_template('game.html')
+    easy = []
+    easyWords = get_easy_words_json()
+    # print(easyWords)
+    for i in range(0,(len(easyWords)-1)):
+        currWord = easyWords[i]
+        easy.append(currWord['word'])
+    length = len(easyWords) - 1
+    print(easy)
+    return render_template('game.html',words = easy, length = length)
 
 @user_views.route('/medium', methods=['GET'])
 @login_required
 def mediumSelected():
-    return render_template('game.html', methods=['GET'])
+    medium = []
+    mediumWords = get_medium_words_json()
+    # print(easyWords)
+    for i in range(0,(len(mediumWords)-1)):
+        currWord = mediumWords[i]
+        medium.append(currWord['word'])
+    length = len(mediumWords) - 1
+    print(medium)
+    return render_template('game.html', words = medium, length = length)
 
 @user_views.route('/hard')
 @login_required
 def hardSelected():
-    return render_template('game.html')
+    hard = []
+    hardWords = get_hard_words_json()
+    # print(easyWords)
+    for i in range(0,(len(hardWords)-1)):
+        currWord = hardWords[i]
+        hard.append(currWord['word'])
+    length = len(hardWords) - 1
+    print(hard)
+    return render_template('game.html', words = hard, length = length)
 
 @user_views.route('/highscores', methods=['GET'])
 @login_required
