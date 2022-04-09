@@ -4,6 +4,7 @@ from flask_jwt import jwt_required
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, EqualTo, Email
+import json
 
 
 from App.controllers import (
@@ -147,7 +148,7 @@ def easySelected():
         easy.append(currWord['word'])
     length = len(easyWords) - 1
     print(easy)
-    return render_template('game.html',words = easy, length = length)
+    return render_template('game.html',wordsJSON = easyWords, length = length, words=easy, dumpedWords = json.dumps(easyWords))
 
 @user_views.route('/medium', methods=['GET'])
 @login_required
