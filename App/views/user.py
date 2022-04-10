@@ -148,7 +148,7 @@ def easySelected():
         easy.append(currWord['word'])
     length = len(easyWords) - 1
     print(easy)
-    return render_template('game.html',wordsJSON = easyWords, length = length, words=easy, dumpedWords = json.dumps(easyWords))
+    return render_template('game.html',wordsJSON = easyWords, length = length, words=easy)
 
 @user_views.route('/medium', methods=['GET'])
 @login_required
@@ -161,7 +161,7 @@ def mediumSelected():
         medium.append(currWord['word'])
     length = len(mediumWords) - 1
     print(medium)
-    return render_template('game.html', words = medium, length = length)
+    return render_template('game.html', wordsJSON = mediumWords, words = medium, length = length)
 
 @user_views.route('/hard')
 @login_required
@@ -174,7 +174,7 @@ def hardSelected():
         hard.append(currWord['word'])
     length = len(hardWords) - 1
     print(hard)
-    return render_template('game.html', words = hard, length = length)
+    return render_template('game.html', wordsJSON = hardWords, words = hard, length = length)
 
 @user_views.route('/highscores', methods=['GET'])
 @login_required

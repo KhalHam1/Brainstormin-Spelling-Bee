@@ -43,48 +43,53 @@
         border-bottom: 3px solid hsl(0, 0%, 24%);
         border-left: 3px solid hsl(0, 0%, 24%);
     }
+
+    #userinput{
+        margin-top: 5%;
+    }
+
+    .textToSpeechbutton{
+        background-color: hsl(59, 85%, 51%);
+        border: none;
+        color: hsl(0, 0%, 24%);
+        font: 24px Forte;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 100%;
+        margin-top: 5%;
+    }
+
+   .textToSpeechbutton:hover{
+        background-color: hsl(59, 79%, 68%);
+        border: none;
+        color: hsl(0, 0%, 24%);
+        font: 24px Forte;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 100%;
+        margin-top: 5%;
+
+    }
    
 </style>
 
-<h1>Game Page</h1>
-<!-- <table class="col m6 offset-m3">
-<thead> -->
-    
-
-<!-- </thead> -->
 {% set selected_word = words|random %}
-<div id = "test">{{words}}</div>
-}<div id="test2">    
-</div>
+<div id = "test" style="color:hsl(59, 57%, 75%)">{{words}}</div>
+
+
+<a class = "textToSpeechbutton" onclick="speakbutton()" >Speak</a>
+<form>
+    <input type="text" id="userInput" autocomplete="off" name="userInput"><br><br>
+</form>
 <a class = "button" onclick="extractWords()" >Generate</a>
-<!-- {% for i in range(0,length) %} -->
-<!-- <tbody>
-    <tr>
-        <td>Selected Word = {{ selected_word }}</td> -->
-        <!-- <td>{{ wordsJSON[i] }}</td> -->
-    <!-- </tr> -->
-    <!-- {% endfor %} -->
-
-
-<!-- </tbody>
-</table> -->
+<div id="test2"></div>
 {% endblock %}
 
-<script type="text/javascript">
-    function test_func(data) {
-        console.log(data);
-    }
-    var wordsJS = '{{ words|tojson|safe }}';
-    var wordsJS_in_JS = Array.from(JSON.parse(wordsJS))
-    var test_string = 'I love life.';
-    console.log('I love life!')
-    document.getElementById("test").innerHTML = test_string;
-    // test_func(wordsJSON);
-    // var words = {{ words|safe }};
-    // for (i=0;i<=80;i++){
-    //     wordsJS[i] = {
-    //         word: {{ words[i] }}
-    //     }
-    // }
-    // const wordsJS = {{ words }}
-</script>
