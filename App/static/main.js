@@ -105,6 +105,10 @@ function extractWords(){
         chars.push(array_restart[i]);
     }
     wordsArray = create_words_array(chars);
+    // for(i=0;i<wordsArray.length;i++){
+    //     wordsArray[i].toUppercase();
+    // }
+    // console.log(wordsArray);
     let x = Math.floor((Math.random() * wordsArray.length) + 0);
     document.getElementById('test2').innerHTML = wordsArray[x];
     speakbutton();
@@ -154,6 +158,56 @@ function speakbutton(){
    utter.rate = 0.45;
    window.speechSynthesis.speak(utter)
 }
+
+function divCompare(){
+   var userSubmission = document.getElementById("userInput").value;
+   console.log('Submitted by form: '+userSubmission)
+   word = document.getElementById('test2');
+   var element = document.querySelector('#test2');
+   var temp = document.createElement("div");
+   temp.appendChild( element.cloneNode( true ) );
+    
+   var arrayString = temp.innerHTML;
+   
+   temp = element = null;
+   
+   
+   var charArray = []
+   for (i=0;i<arrayString.length;i++){
+       charArray.push(arrayString[i]);
+   }
+   let arrayString_no_prologue = remove_from_start(16, charArray);
+   let m = arrayString_no_prologue.length-1;
+   while(arrayString_no_prologue[m]!='<'){
+       arrayString_no_prologue.pop();
+       m=m-1;
+   }
+   
+   finalWord = create_words_array(charArray);
+   finalWordStringified = String(wordToSpeak);
+   finalWordStringified = finalWordStringified.toUpperCase();
+   userSubmission = userSubmission.toUpperCase();
+   if(finalWordStringified == userSubmission){
+       console.log("It's a match!")
+       alert("Well Done!");
+       extractWords();
+   }
+   else{
+       console.log("There is no match );")
+       alert("There is no match )");
+   }
+   
+}
+
+
+function clickbtn(){
+   divCompare();     
+}
+
+function hide(x){
+    x.style.display = 'none';
+}
+
 
 async function main(){
     const users = await getUserData();

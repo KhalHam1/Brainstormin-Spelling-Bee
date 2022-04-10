@@ -7,7 +7,18 @@
 {% block content %}
 
 <style>
-     .button {
+    .flexbox-container{
+        display:flex;
+        min-width: 1400px;
+        padding-top: 10px;
+        padding-right: 10px;
+    }
+    .flexbox-item{
+        /* width:110%; */
+        /* height:100%; */
+        flex-direction:row;   
+    }
+    .button {
         margin-left: 35%;
         font: 24px Forte;
         text-decoration: none;
@@ -76,20 +87,53 @@
         margin: 4px 2px;
         border-radius: 100%;
         margin-top: 5%;
+    }
 
+    .myBtn{
+        background-color: hsl(59, 79%, 68%);
+        color: hsl(0, 0%, 24%);
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+
+    .myBtn:hover{
+        background-color: hsl(59, 35%, 47%);
+        color: hsl(0, 0%, 24%);
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+
+    .unselectable {
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
    
 </style>
 
 {% set selected_word = words|random %}
-<div id = "test" style="color:hsl(59, 57%, 75%)">{{words}}</div>
-
+<div id = "test" style="color:hsl(59, 57%, 75%)" class="unselectable">{{words}}</div>
 
 <a class = "textToSpeechbutton" onclick="speakbutton()" >Speak</a>
-<form>
-    <input type="text" id="userInput" autocomplete="off" name="userInput"><br><br>
-</form>
-<a class = "button" onclick="extractWords()" >Generate</a>
-<div id="test2"></div>
+<input type="text" id="userInput" autocomplete="off" name="userInput"><br>
+<button id="myBtn" class="myBtn" onclick="clickbtn()">Submit</button><br>
+<a class = "button" onclick="extractWords();" >Begin</a>
+<div id="test2" class="unselectable"></div>
+
+<script>    
+    var input = document.getElementById("userInput");
+    input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("myBtn").click();
+  }
+});
+</script>
+
+
 {% endblock %}
 
