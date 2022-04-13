@@ -112,17 +112,27 @@
         -ms-user-select: none;
         user-select: none;
     }
+
+    #endgame{
+        display: none;
+    }
    
 </style>
 
 {% set selected_word = words|random %}
-<div id = "test" style="color:hsl(59, 57%, 75%)" class="unselectable">{{words}}</div>
+<div id = "gameplay">
+    <div id = "test" style="color:hsl(59, 57%, 75%)" class="unselectable">{{words}}</div>
 
-<a class = "textToSpeechbutton" onclick="speakbutton()" >Speak</a>
-<input type="text" id="userInput" autocomplete="off" name="userInput"><br>
-<button id="myBtn" class="myBtn" onclick="clickbtn()">Submit</button><br>
-<a class = "button" onclick="extractWords();" >Begin</a>
-<div id="test2" class="unselectable"></div>
+
+    <div>Time left = <span id="timer"></span></div>
+
+    <a class = "textToSpeechbutton" onclick="speakbutton()" >Speak</a>
+    <input type="text" id="userInput" autocomplete="off" name="userInput"><br>
+    <button id="myBtn" class="myBtn" onclick="clickbtn()">Submit</button><br>
+    <a class = "button" onclick="extractWords();startTimer();">Begin</a>
+    <div id="test2" class="unselectable"></div>
+</div>
+<div id = "endgame">This is the endgame screen.</div>
 
 <script>    
     var input = document.getElementById("userInput");
@@ -133,7 +143,5 @@
   }
 });
 </script>
-
-
 {% endblock %}
 

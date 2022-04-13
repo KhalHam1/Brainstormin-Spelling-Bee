@@ -110,12 +110,12 @@ def loginAction():
             data = request.form
             success = check_user(data['username'],data['password'])
             if success:
-                user = get_user(data['username'])
-                print(user)
-                userLoggedIn = load_user(user)
-                print("userLoggedIn = ", userLoggedIn.toDict())
+                # user = get_user(data['username'])
+                # print(user)
+                # userLoggedIn = load_user(user)
+                # print("userLoggedIn = ", userLoggedIn.toDict())
                 user_object = get_user_object(data['username'])
-                login_user(userLoggedIn)
+                login_user(user_object)
                 # flash('Logged In Successfully')
                 return render_template('home.html')
             flash('Invalid Credentials')
