@@ -115,12 +115,14 @@ def loginAction():
                 # userLoggedIn = load_user(user)
                 # print("userLoggedIn = ", userLoggedIn.toDict())
                 user_object = get_user_object(data['username'])
+                print('User logging in: ', user_object.toDict())
                 login_user(user_object)
                 # flash('Logged In Successfully')
-                return render_template('home.html')
+                return render_template('home.html', currUser = user_object)
             flash('Invalid Credentials')
             return render_template('login.html', form=form)
         else:
+            flash('End case.')
             return render_template('home.html')
     
 
