@@ -87,24 +87,36 @@
 
 <div class="flexbox-container">
 <h3 style="text-align:center;">Login</h3>
-      
-    <form class="col s12 m8 offset-m2" method="POST" action="/login">
-        {{ form.csrf_token }}
+
+<form class="col s12 m8 offset-m2" method="POST" action="/login">
+        
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+
+        <input type="submit" value="Submit">
+      </form>
+
+      <!-- <form class="col s12 m8 offset-m2" method="POST" action="/login">
+        {# form.csrf_token #}
 
         <div class="input-field col s12 m8 offset-m2"> 
-          {{ form.username(size=20, class="validate") }}
-          {{ form.username.label }}
+          {# form.username(size=20, class="validate") #}
+          {# form.username.label #}
         </div>
 
         <div class="input-field col s12 m8 offset-m2">
-          {{ form.password(size=20, class="validate") }}
-          {{ form.password.label }}
+          {# form.password(size=20, class="validate") #}
+          {# form.password.label #}
         </div>
 
         <div class="input-field col s12 m8 offset-m2" style="margin-left:200px;">
-          {{form.submit}}
+         {#form.submit#}
         </div> 
-    </form>
+    </form> -->
+         
   
 </div>
 {% endblock %}

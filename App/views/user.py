@@ -96,34 +96,53 @@ def login():
     if current_user and current_user.is_authenticated:
         return render_template('home.html')
     else:
-        form = LogIn()
-        return render_template('login.html', form=form)
+        
+        return render_template('login.html')
     
 
 @user_views.route('/login', methods=['POST'])
 def loginAction():
+    
     if current_user and current_user.is_authenticated:
         return render_template('home.html')
     else:
-        form = LogIn()
-        if form.validate_on_submit():
-            data = request.form
-            success = check_user(data['username'],data['password'])
-            if success:
+        data = request.form
+        success = check_user(data['username'],data['password'])
+        if success:
+            print('Current Username: ', data['username'])
                 # user = get_user(data['username'])
                 # print(user)
                 # userLoggedIn = load_user(user)
                 # print("userLoggedIn = ", userLoggedIn.toDict())
-                user_object = get_user_object(data['username'])
-                print('User logging in: ', user_object.toDict())
-                login_user(user_object)
+            user_object = get_user_object(data['username'])
+            print('User logging in: ', user_object.toDict())
+            login_user(user_object)
                 # flash('Logged In Successfully')
-                return render_template('home.html', currUser = user_object)
-            flash('Invalid Credentials')
-            return render_template('login.html', form=form)
-        else:
-            flash('End case.')
-            return render_template('home.html')
+            return render_template('home.html', currUser = user_object)
+        flash('Invalid Credentials')
+        return render_template('login.html')
+        # else:
+        #     flash('End case.')
+        #     return render_template('home.html')
+        # form = LogIn()
+        # if form.validate_on_submit():
+        #     data = request.form
+        #     success = check_user(data['username'],data['password'])
+        #     if success:
+        #         # user = get_user(data['username'])
+        #         # print(user)
+        #         # userLoggedIn = load_user(user)
+        #         # print("userLoggedIn = ", userLoggedIn.toDict())
+        #         user_object = get_user_object(data['username'])
+        #         print('User logging in: ', user_object.toDict())
+        #         login_user(user_object)
+        #         # flash('Logged In Successfully')
+        #         return render_template('home.html', currUser = user_object)
+        #     flash('Invalid Credentials')
+        #     return render_template('login.html', form=form)
+        # else:
+        #     flash('End case.')
+        #     return render_template('home.html')
     
 
 # @user_views.route('/start', method=['GET'])

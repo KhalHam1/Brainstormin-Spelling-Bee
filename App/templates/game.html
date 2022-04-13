@@ -124,7 +124,7 @@
     <div id = "test" style="color:hsl(59, 57%, 75%)" class="unselectable">{{words}}</div>
 
 
-    <div>Time left = <span id="timer"></span></div>
+    <div>Time: <span id="timer"></span></div>
 
     <a class = "textToSpeechbutton" onclick="speakbutton()" >Speak</a>
     <input type="text" id="userInput" autocomplete="off" name="userInput"><br>
@@ -133,7 +133,6 @@
     <div id="test2" class="unselectable"></div>
 </div>
 <div id = "endgame">This is the endgame screen.</div>
-
 <script>    
     var input = document.getElementById("userInput");
     input.addEventListener("keyup", function(event) {
