@@ -116,6 +116,31 @@
     #endgame{
         display: none;
     }
+
+/* modal stuff */
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+    font: 24px Forte;
+    background-color: hsl(59, 85%, 51%);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid  hsl(59, 35%, 47%);
+    width: 80%;
+    }
    
 </style>
 
@@ -123,7 +148,7 @@
 <div id = "gameplay">
     <div id = "test" style="color:hsl(59, 57%, 75%)" class="unselectable">{{words}}</div>
 
-
+    <div>Score: <span id="score"></span></div>
     <div>Time: <span id="timer"></span></div>
 
     <a class = "textToSpeechbutton" onclick="speakbutton()" >Speak</a>
@@ -132,15 +157,28 @@
     <a class = "button" onclick="extractWords();startTimer();">Begin</a>
     <div id="test2" class="unselectable"></div>
 </div>
-<div id = "endgame">This is the endgame screen.</div>
+
+<!-- Testing a modal idea -->
+<div id="modal" class="modal ">
+    <div class="modal-content">
+        <div> <h1>Final Score: <span id="finscore"></span></h1></div>
+        <h3>Game Over</h3>
+    </div>
+</div>
+
+
+
 <script>    
     var input = document.getElementById("userInput");
     input.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
       document.getElementById("myBtn").click();
+      event.currentTarget.value = "";
   }
 });
+
+
 </script>
 {% endblock %}
 

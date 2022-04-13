@@ -190,11 +190,12 @@ function divCompare(){
    if(finalWordStringified == userSubmission){
        console.log("It's a match!")
        alert("Well Done!");
+        addPoints();
        extractWords();
    }
    else{
-       console.log("There is no match );")
-       alert("There is no match )");
+       console.log("There is no match")
+       alert("There is no match");
    }
    
 }
@@ -215,9 +216,7 @@ function hide(x){
 // }
 
 //TIMER CODE
-
-
-document.getElementById('timer').innerHTML = 0 + ":" + 5;
+document.getElementById('timer').innerHTML = 0 + ":" + 0 + 5;
 //startTimer();
 
 function startTimer() {
@@ -228,10 +227,13 @@ function startTimer() {
   if(s==59){m=m-1}
   if(m<0){
       console.log("Timer ended")
-       var temp = document.getElementById("gameplay");
-       hide(temp);
-       var temp2 = document.getElementById("endgame");
-        temp2.style.display = 'inline';
+        var temp = document.getElementById("gameplay");
+        gethighScore();
+        hide(temp);
+
+        var temp2 = document.getElementById("modal");
+        modal.style.display = 'block';
+
     return
   }
   
@@ -246,9 +248,25 @@ function checkSecond(sec) {
   if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
   if (sec < 0) {sec = "59"};
   return sec;
+}
 
 
+//Score
+document.getElementById('score').innerHTML = 0;
 
+function addPoints(){
+    var currScore = document.getElementById('score').innerHTML;
+    var scoreInt = parseInt(currScore);
+    scoreInt = scoreInt + 10;
+    document.getElementById('score').innerHTML = scoreInt;
+    console.log("Score:" + scoreInt)
+}
+
+
+function gethighScore(){
+     var currScore = document.getElementById('score').innerHTML;
+     setTimeout(() => { alert('Final score: ' + currScore ) }, 1000)
+     document.getElementById('finscore').innerHTML = currScore; 
 }
 
 // main();
