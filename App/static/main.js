@@ -229,11 +229,16 @@ function startTimer() {
       console.log("Timer ended")
         var temp = document.getElementById("gameplay");
         gethighScore();
-        hide(temp);
+        hide(temp);  
+        
+        let utter = new SpeechSynthesisUtterance();
+        utter.text = "Game Over";
+        window.speechSynthesis.speak(utter)
 
         var temp2 = document.getElementById("modal");
         modal.style.display = 'block';
-
+        
+     
     return
   }
   
@@ -265,7 +270,6 @@ function addPoints(){
 
 function gethighScore(){
      var currScore = document.getElementById('score').innerHTML;
-     setTimeout(() => { alert('Final score: ' + currScore ) }, 1000)
      document.getElementById('finscore').innerHTML = currScore; 
 }
 
