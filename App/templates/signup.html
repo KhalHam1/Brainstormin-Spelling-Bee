@@ -87,7 +87,7 @@
 
 <div class="flexbox-container">
 <h3 style="text-align:center;">Create an Account</h3>
-<!-- <form class="col s12 m8 offset-m2" method="POST" action="/login">
+<form class="col s12 m8 offset-m2" method="POST" action="/signup">
         
   <label for="un">Username:</label><br>
   <input type="text" id="un" name="un"><br>
@@ -99,28 +99,28 @@
   <input type="password" id="passConfirm" name="passConfirm"><br><br>
 
   <input type="submit" value="Submit">
-</form> -->
-      <form id="myForm" class="col s12 m8 offset-m2" method="POST" action="/signup">
-        {{ form.csrf_token }}
+</form>
+      <!-- <form id="myForm" class="col s12 m8 offset-m2" method="POST" action="/signup">
+        {# form.csrf_token #}
   
         <div class="input-field col s12 m8 offset-m2">
-          {{form.username(size=20, class="validate")}}
-          {{ form.username.label }}
+          {#form.username(size=20, class="validate")#}
+          {# form.username.label #}
         </div>
 
         <div class="input-field col s12 m8 offset-m2">
-          {{form.password(size=20, class="validate")}}
-          {{ form.password.label }}
+          {#form.password(size=20, class="validate")#}
+          {# form.password.label #}
         </div>
   
         <div class="input-field col s12 m8 offset-m2">
-          {{form.confirm(size=20, class="validate")}}
-          {{ form.confirm.label }}
+          {#form.confirm(size=20, class="validate")#}
+          {# form.confirm.label #}
         </div>
   
         <div class="input-field col s12 m8 offset-m2" style="margin-left:200px;">
-          {{ form.submit }}
+          {# form.submit #}
         </div>
-      </form>
+      </form> -->
   </div>
 {% endblock %}

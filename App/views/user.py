@@ -67,48 +67,48 @@ def client_app():
 
 @user_views.route('/signup', methods=['GET'])
 def signup():
-    form = SignUp()
-    return render_template('signup.html', form=form)    #('signup.html', form=form)
+    # form = SignUp()
+    return render_template('signup.html')    #('signup.html', form=form)
 
 @user_views.route('/signup', methods=['POST'])
 def signUpAction():
-    # data = request.form
-    # old_user = get_user(username = data['un'])
-    # if old_user:
-    #     flash('User Already Exists.')
-    #     return render_template('signup.html')
-    # if data['pass']!=data['passConfirm']:
-    #     flash('Passwords Must Match')
-    #     return render_template('signup.html')
-    # new_user = create_user(username = data['un'], password=data['pass'], highscore=0)
-    # # new_user.set_password(data['password'])
-    # flash('Account Created!')
-    # user = get_user(data['un'])
-    # print(user)
-    # return render_template('index.html')
-    # # return redirect(url_for('user_views.login'))
-    # flash('Account Creation Failed!')
-    # return render_template('signup.html')
-    #  # return redirect(url_for('signup'))
-
-    form = SignUp()
-    if form.validate_on_submit():
-        data = request.form
-        old_user = get_user(username = data['username'])
-        if old_user:
-            flash('User Already Exists.')
-            return render_template('signup.html', form=form)
-   
-        new_user = create_user(username = data['username'], password=data['password'], highscore=0)
-        # new_user.set_password(data['password'])
-        flash('Account Created!')
-        user = get_user(data['username'])
-        print(user)
-        return render_template('login.html', form=form)
-        # return redirect(url_for('user_views.login'))
+    data = request.form
+    old_user = get_user(username = data['un'])
+    if old_user:
+        flash('User Already Exists.')
+        return render_template('signup.html')
+    if data['pass']!=data['passConfirm']:
+        flash('Passwords Must Match')
+        return render_template('signup.html')
+    new_user = create_user(username = data['un'], password=data['pass'], highscore=0)
+    # new_user.set_password(data['password'])
+    flash('Account Created!')
+    user = get_user(data['un'])
+    print(user)
+    return render_template('index.html')
+    # return redirect(url_for('user_views.login'))
     flash('Account Creation Failed!')
-    return render_template('signup.html', form=form)
-    # return redirect(url_for('signup'))
+    return render_template('signup.html')
+     # return redirect(url_for('signup'))
+
+    # form = SignUp()
+    # if form.validate_on_submit():
+    #     data = request.form
+    #     old_user = get_user(username = data['username'])
+    #     if old_user:
+    #         flash('User Already Exists.')
+    #         return render_template('signup.html', form=form)
+   
+    #     new_user = create_user(username = data['username'], password=data['password'], highscore=0)
+    #     # new_user.set_password(data['password'])
+    #     flash('Account Created!')
+    #     user = get_user(data['username'])
+    #     print(user)
+    #     return render_template('login.html', form=form)
+    #     # return redirect(url_for('user_views.login'))
+    # flash('Account Creation Failed!')
+    # return render_template('signup.html', form=form)
+    # # return redirect(url_for('signup'))
 
 @user_views.route('/login', methods=['GET'])
 def login():
