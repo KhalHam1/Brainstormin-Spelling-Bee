@@ -180,6 +180,7 @@ def logout():
 @user_views.route('/easy', methods=['GET'])
 @login_required
 def easySelected():
+    difficulty = 'easy'
     easy = []
     easyWords = get_easy_words_json()
     # print(easyWords)
@@ -188,11 +189,12 @@ def easySelected():
         easy.append(currWord['word'])
     length = len(easyWords) - 1
     print(easy)
-    return render_template('game.html',wordsJSON = easyWords, length = length, words=easy)
+    return render_template('game.html',wordsJSON = easyWords, length = length, words=easy, difficulty=difficulty)
 
 @user_views.route('/medium', methods=['GET'])
 @login_required
 def mediumSelected():
+    difficulty = 'medium'
     medium = []
     mediumWords = get_medium_words_json()
     # print(easyWords)
@@ -201,11 +203,12 @@ def mediumSelected():
         medium.append(currWord['word'])
     length = len(mediumWords) - 1
     print(medium)
-    return render_template('game.html', wordsJSON = mediumWords, words = medium, length = length)
+    return render_template('game.html', wordsJSON = mediumWords, words = medium, length = length, difficulty=difficulty)
 
 @user_views.route('/hard')
 @login_required
 def hardSelected():
+    difficulty = 'hard'
     hard = []
     hardWords = get_hard_words_json()
     # print(easyWords)
@@ -214,7 +217,7 @@ def hardSelected():
         hard.append(currWord['word'])
     length = len(hardWords) - 1
     print(hard)
-    return render_template('game.html', wordsJSON = hardWords, words = hard, length = length)
+    return render_template('game.html', wordsJSON = hardWords, words = hard, length = length, difficulty=difficulty)
 
 @user_views.route('/highscores', methods=['GET'])
 @login_required
@@ -261,8 +264,26 @@ def get_words():
     flash('Words displayed.')
     return render_template('index.html', form = form)
     
+#Get Scores
+@user_views.route('/getScore/<string:userval>', methods=['POST'])
+@login_required
+def get_score(userval):
+    userval = json.loads(userval)
+    print()
+    print("Score recieved!")
+    print("username: " +  current_user.username)
+    print(f"mode: {userval['mode']}")
+    print(f"score: {userval['score']}")
+    print()
+
+    return 'Info Recieved Success!'
 
          
+
+
+
+
+
 
 @user_views.route('/api/lol')
 def lol():
@@ -271,4 +292,6 @@ def lol():
 @user_views.route('/static/users')
 def static_user_page():
   return send_from_directory('static', 'static-user.html')
+
+
 

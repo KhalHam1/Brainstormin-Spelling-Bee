@@ -273,4 +273,16 @@ function gethighScore(){
      document.getElementById('finscore').innerHTML = currScore; 
 }
 
+ 
+
+
+
+
+
+
+
+
+
+
+
 // main();

@@ -144,7 +144,7 @@
         margin: 4px 2px;
     }
 
-    .unselectable {
+    .unselectable, .difficulty {
         -moz-user-select: -moz-none;
         -khtml-user-select: none;
         -webkit-user-select: none;
@@ -188,6 +188,7 @@
     }
    
 </style>
+<div id="mode" class="difficulty" style="color:hsl(59, 57%, 75%)">{{difficulty}}</div>
 
 {% set selected_word = words|random %}
 <div id = "gameplay">
@@ -208,7 +209,7 @@
     <div class="modal-content">
         <h1>Game Over</h1>
         <div> <h3>Final Score: <span id="finscore"></span></h3></div>
-        <a class = "buttonRet" href="/home">Main Menu</a>
+        <a class = "buttonRet" href="/home" onclick="sendUserScore()" >Main Menu</a>
     </div>
 </div>
 
@@ -224,6 +225,23 @@
   }
 });
 
+//Send Score
+function sendUserScore(){
+    var currScore = document.getElementById('score').innerHTML;
+    var currMode = document.getElementById('mode').innerHTML;
+    console.log(currScore, currMode);
+    let userval = {
+        'mode': currMode ,
+        'score': currScore
+    }
+    const request = new XMLHttpRequest()
+    request.open('POST', `/getScore/${JSON.stringify(userval)}`)
+    request.onload = () => {
+        const flaskMessage = request.responseText
+        console.log(flaskMessage)
+    }
+    request.send()
+}
 
 </script>
 {% endblock %}
