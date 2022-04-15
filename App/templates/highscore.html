@@ -4,5 +4,67 @@
 
 {{ super() }}
 {% block content %}
-    <h1>High Scores</h1>
+
+<div>
+    <h1>Elementary</h1>
+    <table id="Elementary Table">
+        <thead>
+            <th>Score</th>
+            <th>Name</th>
+        </thead>
+        {% for i in range(0,1) %}
+        {% for j in range(0, length_elem) %}
+        <tbody>
+            <tr>  
+                <td>{{ users_elem[j] }}</td>
+                <td>{{ scores_elem[j] }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+ 
+<div>
+   <h1>Secondary</h1>
+    <table id="Secondary Table">
+        <thead>
+            <th>Score</th>
+            <th>Name</th>
+        </thead>
+        {% for i in range(0,1) %}
+        {% for j in range(0, length_sec) %}
+        <tbody>
+            <tr>
+                <td>{{ users_sec[j] }}</td>
+                <td>{{ scores_sec[j] }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h1>University</h1>
+    <table id="University Table">
+        <thead>
+            <th>Score</th>
+            <th>Name</th>
+        </thead>
+        {% for i in range(0,1) %}
+        {% for j in range(0, length_uni) %}
+        <tbody>
+            <tr>
+                <td>{{ users_uni[j] }}</td>
+                <td>{{ scores_uni[j] }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
 {% endblock %}

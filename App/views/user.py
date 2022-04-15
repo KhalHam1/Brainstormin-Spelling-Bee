@@ -20,7 +20,11 @@ from App.controllers import (
     get_all_words_json,
     get_easy_words_json,
     get_medium_words_json,
-    get_hard_words_json
+    get_hard_words_json,
+    update_user_score,
+    get_elementary_scores,
+    get_secondary_scores,
+    get_university_scores
 )
 
 class SignUp(FlaskForm):
@@ -222,7 +226,43 @@ def hardSelected():
 @user_views.route('/highscores', methods=['GET'])
 @login_required
 def highscores():
-    return render_template('highscore.html')
+    elementary_scores = get_elementary_scores()
+    secondary_scores = get_secondary_scores()
+    university_scores = get_university_scores()
+    # users = get_all_users_json()
+    # print(users)
+    users_elementary = []
+    scores_elementary = []
+    users_secondary = []
+    scores_secondary = []
+    users_university = []
+    scores_university = []
+
+    for val in elementary_scores:
+        currUser = val['username']
+        currScore = val['elementary_score']
+        users_elementary.append(currUser)
+        scores_elementary.append(currScore)
+
+    for val in secondary_scores:
+        currUser = val['username']
+        currScore = val['secondary_score']
+        users_secondary.append(currUser)
+        scores_secondary.append(currScore)
+    
+    for val in university_scores:
+        currUser = val['username']
+        currScore = val['university_score']
+        users_university.append(currUser)
+        scores_university.append(currScore)
+    
+    # print(users)
+    # print(scores)
+    print(elementary_scores)
+    length_elementary = len(elementary_scores)
+    length_secondary = len(secondary_scores)
+    length_university = len(university_scores)
+    return render_template('highscore.html', users_elem = users_elementary, scores_elem = scores_elementary, length_elem = length_elementary, users_sec = users_secondary, scores_sec = scores_secondary, length_sec = length_secondary, users_uni = users_university, scores_uni = scores_university, length_uni = length_university)
 
 @user_views.route('/difficulty', methods=['GET'])
 @login_required
@@ -265,17 +305,19 @@ def get_words():
     return render_template('index.html', form = form)
     
 #Get Scores
-@user_views.route('/getScore/<string:userval>', methods=['POST'])
+@user_views.route('/getScore/<string:userval>', methods=['PUT'])
 @login_required
 def get_score(userval):
     userval = json.loads(userval)
-    print()
+    username = current_user.username
+    difficulty = userval['mode']
+    scoreStr = userval['score']
+    score = int(scoreStr)
+    update_user_score(username, difficulty, score)
     print("Score recieved!")
     print("username: " +  current_user.username)
-    print(f"mode: {userval['mode']}")
-    print(f"score: {userval['score']}")
-    print()
-
+    print("mode: ", difficulty)
+    print("score: ", score)
     return 'Info Recieved Success!'
 
          

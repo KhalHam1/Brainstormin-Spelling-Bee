@@ -195,9 +195,19 @@ function divCompare(){
    }
    else{
        console.log("There is no match")
-       alert("There is no match");
+       //alert("There is no match");
+       repeatwrd(finalWord);
+
    }
    
+}
+
+
+function repeatwrd(word){
+     let utter = new SpeechSynthesisUtterance();
+     utter.rate = 0.75;
+     utter.text = 'Incorrect, ' + word;
+     window.speechSynthesis.speak(utter)
 }
 
 
@@ -216,7 +226,7 @@ function hide(x){
 // }
 
 //TIMER CODE
-document.getElementById('timer').innerHTML = 0 + ":" + 0 + 5;
+document.getElementById('timer').innerHTML = 0 + ":" + 1 + 5;
 //startTimer();
 
 function startTimer() {
@@ -228,10 +238,11 @@ function startTimer() {
   if(m<0){
       console.log("Timer ended")
         var temp = document.getElementById("gameplay");
-        gethighScore();
+        getHighScore();
         hide(temp);  
         
         let utter = new SpeechSynthesisUtterance();
+        utter.rate = 1;
         utter.text = "Game Over";
         window.speechSynthesis.speak(utter)
 
@@ -268,7 +279,7 @@ function addPoints(){
 }
 
 
-function gethighScore(){
+function getHighScore(){
      var currScore = document.getElementById('score').innerHTML;
      document.getElementById('finscore').innerHTML = currScore; 
 }

@@ -201,7 +201,7 @@
     <input type="text" id="userInput" autocomplete="off" name="userInput"><br>
     <button id="myBtn" class="myBtn" onclick="clickbtn()">Submit</button><br>
     <a class = "button" onclick="extractWords();startTimer();">Begin</a>
-    <div id="test2" class="unselectable"></div>
+    <div id="test2" class="unselectable" style="color:hsl(59, 57%, 75%)"></div>
 </div>
 
 <!-- Testing a modal idea -->
@@ -235,7 +235,7 @@ function sendUserScore(){
         'score': currScore
     }
     const request = new XMLHttpRequest()
-    request.open('POST', `/getScore/${JSON.stringify(userval)}`)
+    request.open('PUT', `/getScore/${JSON.stringify(userval)}`)
     request.onload = () => {
         const flaskMessage = request.responseText
         console.log(flaskMessage)
