@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
-{% block title %}Backend App{% endblock %}
-{% block page %}Backend App{% endblock %}
+{% block title %}Highscores{% endblock %}
+{% block page %}Highscores{% endblock %}
 
 {{ super() }}
 {% block content %}
@@ -59,6 +59,26 @@
             <tr>
                 <td>{{ users_uni[j] }}</td>
                 <td>{{ scores_uni[j] }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h1>Genius</h1>
+    <table id="Genius Table">
+        <thead>
+            <th>Score</th>
+            <th>Name</th>
+        </thead>
+        {% for i in range(0,1) %}
+        {% for j in range(0, length_gen) %}
+        <tbody>
+            <tr>
+                <td>{{ users_gen[j] }}</td>
+                <td>{{ scores_gen[j] }}</td>
             </tr>
             {% endfor %}
             {% endfor %}

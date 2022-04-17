@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     highscore_easy = db.Column(db.Integer)
     highscore_medium = db.Column(db.Integer)
     highscore_hard = db.Column(db.Integer)
+    highscore_genius = db.Column(db.Integer)
 
     def __init__(self, username, password, highscore):
         self.username = username
@@ -16,6 +17,7 @@ class User(db.Model, UserMixin):
         self.highscore_easy = highscore
         self.highscore_medium = highscore
         self.highscore_hard = highscore
+        self.highscore_genius = highscore
 
 
 
@@ -25,7 +27,8 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'highscore_easy': self.highscore_easy,
             'highscore_medium': self.highscore_medium,
-            'highscore_hard': self.highscore_hard
+            'highscore_hard': self.highscore_hard,
+            'highscore_genius': self.highscore_genius
         }
 
     def set_password(self, password):

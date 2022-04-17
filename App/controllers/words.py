@@ -79,4 +79,12 @@ def get_hard_words_json():
         return []
     hardWords = [word.toDict() for word in hardWords]
     return hardWords
+
+def get_genius_words_json():
+    geniusWords = []
+    geniusWords = Word.query.filter_by(difficulty='genius')
+    if not geniusWords:
+        return []
+    geniusWords = [word.toDict() for word in geniusWords]
+    return geniusWords
    
