@@ -112,6 +112,7 @@ function extractWords(){
     let x = Math.floor((Math.random() * wordsArray.length) + 0);
     document.getElementById('test2').innerHTML = wordsArray[x];
     speakbutton();
+
     return wordsArray[x]; 
 }
 
@@ -159,6 +160,7 @@ function speakbutton(){
    window.speechSynthesis.speak(utter)
 }
 
+
 function divCompare(){
    var userSubmission = document.getElementById("userInput").value;
    console.log('Submitted by form: '+userSubmission)
@@ -188,16 +190,25 @@ function divCompare(){
    finalWordStringified = finalWordStringified.toUpperCase();
    userSubmission = userSubmission.toUpperCase();
    if(finalWordStringified == userSubmission){
-       console.log("It's a match!")
+       var correct = document.getElementById("correct")
+       var incorrect = document.getElementById("wrong")
+       console.log("Correct!")
+       show(correct)
+       hide(incorrect)
        alert("Well Done!");
-        addPoints();
+       addPoints();
        extractWords();
    }
    else{
        console.log("There is no match")
-       //alert("There is no match");
-       repeatwrd(finalWord);
+       var incorrect = document.getElementById("wrong")
+       var correct = document.getElementById("correct")
+       show(incorrect)
+       hide(correct)
 
+
+       alert("Wrong!");
+       repeatwrd(finalWord);
    }
    
 }
@@ -205,7 +216,7 @@ function divCompare(){
 
 function repeatwrd(word){
      let utter = new SpeechSynthesisUtterance();
-     utter.rate = 0.75;
+     utter.rate = 0.35;
      utter.text = 'Incorrect, ' + word;
      window.speechSynthesis.speak(utter)
 }
@@ -219,6 +230,10 @@ function hide(x){
     x.style.display = 'none';
 }
 
+function show(x){
+    x.style.display = 'block';
+}
+
 
 // async function main(){
 //     const users = await getUserData();
@@ -226,7 +241,7 @@ function hide(x){
 // }
 
 //TIMER CODE
-document.getElementById('timer').innerHTML = 0 + ":" + 1 + 5;
+document.getElementById('timer').innerHTML = 1 + ":" + 0 + 0;
 //startTimer();
 
 function startTimer() {

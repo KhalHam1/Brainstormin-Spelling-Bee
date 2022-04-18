@@ -110,7 +110,6 @@
         font-size: 16px;
         margin: 4px 2px;
         border-radius: 100%;
-        margin-top: 5%;
     }
 
    .textToSpeechbutton:hover{
@@ -125,7 +124,6 @@
         font-size: 16px;
         margin: 4px 2px;
         border-radius: 100%;
-        margin-top: 5%;
     }
 
     .myBtn{
@@ -186,6 +184,36 @@
     font: 24px Forte;
     color: hsl(0, 0%, 24%);
     }
+
+    i.icon-blue {
+    color: hsl(0, 0%, 24%);
+    }
+
+    .indicator{
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+        width:50px;
+        height:50px;
+    }
+    
+    * {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
    
 </style>
 <div id="mode" class="difficulty" style="color:hsl(59, 57%, 75%)">{{difficulty}}</div>
@@ -193,11 +221,20 @@
 {% set selected_word = words|random %}
 <div id = "gameplay">
     <div id = "test" style="color:hsl(59, 57%, 75%)" class="unselectable">{{words}}</div>
+    <div class ="scoreDiv">Score:  <span id="score"></span></div>
+    <div class ="timerDiv">Time:  <span id="timer"></span></div>
 
-    <div class ="scoreDiv">Score: <span id="score"></span></div>
-    <div class ="timerDiv">Time: <span id="timer"></span></div>
+<div class="row">
+    <div class="column">
+        <img id="correct" class="indicator" src="{{ url_for('static', filename='correct.png') }}" alt="Correct" style="float:right">
+     </div>
+    <div class="column">
+       <img id="wrong" class="indicator" src="{{ url_for('static', filename='wrong.png') }}" alt="Wrong" style="float:left">
+     </div>
+</div>
 
-    <a class = "textToSpeechbutton" onclick="speakbutton()" >Speak</a>
+
+    <a class="textToSpeechbutton" id="speakBtn" onclick="speakbutton()" >Repeat</a>
     <input type="text" id="userInput" autocomplete="off" name="userInput"><br>
     <button id="myBtn" class="myBtn" onclick="clickbtn()">Submit</button><br>
     <a class = "button" onclick="extractWords();startTimer();">Begin</a>
@@ -224,6 +261,17 @@
       event.currentTarget.value = "";
   }
 });
+
+var speakInput = document.getElementById("userInput");
+speakInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 17) {
+      event.preventDefault();
+      document.getElementById("speakBtn").click();
+      return false;
+  }
+});
+
+
 
 //Send Score
 function sendUserScore(){

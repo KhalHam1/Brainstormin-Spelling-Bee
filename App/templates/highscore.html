@@ -5,12 +5,65 @@
 {{ super() }}
 {% block content %}
 
-<div>
+<style>
+.btn-group button {
+    margin-top: 10%;
+    background-color: hsl(59, 85%, 51%); 
+    border: 1px solid  hsl(59, 85%, 51%);
+    color: hsl(0, 0%, 24%);
+    font: 20px Forte;
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: hsl(59, 79%, 68%);
+}
+
+.elementary{  
+    padding: 20px;
+    width: 100%; /* Full width */
+    height: 190%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: hsla(0, 0%, 7%, 0.137) /* Black w/ opacity */
+}
+
+.secondary, .university, .genius{
+    display: none;
+    padding: 20px;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: hsla(0, 0%, 7%, 0.137) /* Black w/ opacity */
+}
+</style>
+
+<div class="btn-group">
+    <button id="elementaryBtn">Elementary</button>
+    <button id="secondaryBtn">Secondary</button>
+    <button id="universityBtn">University</button>
+    <button id="geniusBtn">Genius</button>
+</div>
+
+<div id="elementaryDiv" class="elementary" >
     <h1>Elementary</h1>
     <table id="Elementary Table">
         <thead>
-            <th>Score</th>
             <th>Name</th>
+            <th>Score</th>
         </thead>
         {% for i in range(0,1) %}
         {% for j in range(0, length_elem) %}
@@ -26,12 +79,12 @@
 </div>
 
  
-<div>
+<div id="secondaryDiv" class="secondary">
    <h1>Secondary</h1>
     <table id="Secondary Table">
         <thead>
-            <th>Score</th>
             <th>Name</th>
+            <th>Score</th>
         </thead>
         {% for i in range(0,1) %}
         {% for j in range(0, length_sec) %}
@@ -46,12 +99,12 @@
     </table>
 </div>
 
-<div>
+<div id="universityDiv" class="university">
     <h1>University</h1>
     <table id="University Table">
         <thead>
-            <th>Score</th>
             <th>Name</th>
+            <th>Score</th>
         </thead>
         {% for i in range(0,1) %}
         {% for j in range(0, length_uni) %}
@@ -66,12 +119,12 @@
     </table>
 </div>
 
-<div>
+<div id="geniusDiv" class="genius">
     <h1>Genius</h1>
     <table id="Genius Table">
         <thead>
-            <th>Score</th>
             <th>Name</th>
+            <th>Score</th>
         </thead>
         {% for i in range(0,1) %}
         {% for j in range(0, length_gen) %}
@@ -85,6 +138,49 @@
         </tbody>
     </table>
 </div>
+
+<script>
+var elementaryModal = document.getElementById("elementaryDiv");
+var secondaryModal = document.getElementById("secondaryDiv");
+var universityModal = document.getElementById("universityDiv");
+var geniusModal = document.getElementById("geniusDiv");
+
+var btnElementary = document.getElementById("elementaryBtn");
+btnElementary.onclick = function() {
+    elementaryModal.style.display = "block";
+    secondaryModal.style.display = "none";
+    universityModal.style.display = "none";
+    geniusModal.style.display = "none";
+}
+
+//SECONDARY
+var btnSecondary = document.getElementById("secondaryBtn");
+btnSecondary.onclick = function() {
+    elementaryModal.style.display = "none";
+    secondaryModal.style.display = "block";
+    universityModal.style.display = "none";
+    geniusModal.style.display = "none";
+}
+
+//UNIVERSITY
+var btnUniversity = document.getElementById("universityBtn");
+btnUniversity.onclick = function() {
+    elementaryModal.style.display = "none";
+    secondaryModal.style.display = "none";
+    universityModal.style.display = "block";
+    geniusModal.style.display = "none";
+}
+
+//GENIUS
+var btnGenius = document.getElementById("geniusBtn");
+btnGenius.onclick = function() {
+    elementaryModal.style.display = "none";
+    secondaryModal.style.display = "none";
+    universityModal.style.display = "none";
+    geniusModal.style.display = "block";
+}
+
+</script>
 
 
 {% endblock %}
