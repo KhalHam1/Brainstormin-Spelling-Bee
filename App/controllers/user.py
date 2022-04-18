@@ -126,7 +126,7 @@ def get_elementary_scores():
     
         scores[i], scores[lowest_index] = scores[lowest_index], scores[i]
 
-    scores.reverse()
+    # scores.reverse()
 
     return scores
 
@@ -168,7 +168,7 @@ def get_secondary_scores():
     
         scores[i], scores[lowest_index] = scores[lowest_index], scores[i]
 
-    scores.reverse()
+    # scores.reverse()
 
     return scores
 
@@ -208,7 +208,7 @@ def get_university_scores():
     
         scores[i], scores[lowest_index] = scores[lowest_index], scores[i]
 
-    scores.reverse()
+    # scores.reverse()
 
     return scores
 
@@ -247,7 +247,7 @@ def get_genius_scores():
     
         scores[i], scores[lowest_index] = scores[lowest_index], scores[i]
 
-    scores.reverse()
+    # scores.reverse()
 
     return scores
     

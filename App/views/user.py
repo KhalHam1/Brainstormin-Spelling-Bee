@@ -176,7 +176,6 @@ def loginAction():
 
 
 @user_views.route('/logout')
-@login_required
 def logout():
     form=signup_button()
     logout_user()
@@ -242,9 +241,13 @@ def geniusSelected():
 @login_required
 def highscores():
     elementary_scores = get_elementary_scores()
+    elementary_scores = sorted(elementary_scores, key=lambda d: d['elementary_score'], reverse=True)
     secondary_scores = get_secondary_scores()
+    secondary_scores = sorted(secondary_scores, key=lambda d: d['secondary_score'], reverse=True)
     university_scores = get_university_scores()
+    university_scores = sorted(university_scores, key=lambda d: d['university_score'], reverse=True)
     genius_scores = get_genius_scores()
+    genius_scores = sorted(genius_scores, key=lambda d: d['genius_score'], reverse=True)
     
     users_elementary = []
     scores_elementary = []
@@ -281,6 +284,7 @@ def highscores():
     
     # print(users)
     # print(scores)
+    # scores_elementary.sort(reverse=True)
     print(elementary_scores)
     print(secondary_scores)
     print(university_scores)
