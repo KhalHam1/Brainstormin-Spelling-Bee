@@ -15,33 +15,19 @@ body{
   background-color: hsl(59, 57%, 75%);
 }
 
-@media all and (max-width: 500px){
-  body{
-    background-color: hsl(59, 57%, 75%);
+@media only screen and (max-width: 700px){
+
+  .flexbox-image{
+    display: none;
   }
-
-
-  .flexbox-container{
-    padding-top: 12px;
-    padding-bottom: 250px;
-    padding-right: 100px;
-  }
-
-@media (orientation: landscape){
-  body{
-    background-color:hsl(59, 85%, 51%);
-  }
-
-
 }
 
 
-}
 </style>
   </head> 
-    <nav style = "background-color: hsl(59, 85%, 51%); height:90px; width:1400px;" >
+    <nav style = "background-color: hsl(59, 85%, 51%); height:130px; width:1600px;" >
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center" style="color:hsl(0, 0%, 24%); font: 30px Forte; text-align: center;">{% block page %}{% endblock %}</a>
+        <a href="#!" class="C" style="color:hsl(0, 0%, 24%); font: 35px Forte; padding-right:500px; margin-left: 400px;">{% block page %}{% endblock %}</a>
         <div class="nav-wrapper">
           {% if current_user.is_authenticated %}
             <ul id="nav-mobile" style="color:black;">
@@ -54,15 +40,15 @@ body{
             </ul>
             <!-- {% endif %}
             {% if current_user.is_authenticated %} -->
-            <ul style="float:right;">
-              <li style="color:black;">Welcome {{ current_user.username }}!</li>
+            <ul style="margin-left:1200px; margin-top:5px;">
+              <li style="color:black; margin-left:10px;">Welcome {{ current_user.username }}!</li>
               <li><a href="/logout" style="color: hsl(59, 85%, 51%); color:black; margin-right: 10px;">Logout</a></li>
             </ul>
             {% endif %}
         </div>
       </div>
     </nav>
-    
+    {%block page%}
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <nav class="white black-text" style="padding: 10px">
