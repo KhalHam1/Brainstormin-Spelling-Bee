@@ -20,19 +20,22 @@ body{
   .flexbox-image{
     display: none;
   }
+  .mobile-nav{
+    width:500px;
+  }
 }
 
 
 </style>
   </head> 
-    <nav style = "background-color: hsl(59, 85%, 51%); height:130px; width:1600px;" >
+  <body style="background-color: hsl(59, 57%, 75%);">
+    <nav class="mobile-nav" style = "background-color: hsl(59, 85%, 51%); width:1800px;" >
       <div class="nav-wrapper">
-        <a href="#!" class="C" style="color:hsl(0, 0%, 24%); font: 35px Forte; padding-right:500px; margin-left: 400px;">{% block page %}{% endblock %}</a>
+        <a href="#!" class="brand-logo center" style="color:hsl(0, 0%, 24%); font: 35px Forte;">{% block page %}{% endblock %}</a>
         <div class="nav-wrapper">
           {% if current_user.is_authenticated %}
             <ul id="nav-mobile" style="color:black;">
               <li><a href="/home" style="color:black;">Main Menu</a></li>
-                
                 <!-- <li><a href="/users" style="color:black;">Users Jinja</a></li>
                 <li><a href="/static/users" style="color:black;">Users JS</a></li>
                 <li><a href="/login" style="color:black;">Log In</a></li>
@@ -40,7 +43,7 @@ body{
             </ul>
             <!-- {% endif %}
             {% if current_user.is_authenticated %} -->
-            <ul style="margin-left:1200px; margin-top:5px;">
+            <ul style="float:right; padding-right: 80px;">
               <li style="color:black; margin-left:10px;">Welcome {{ current_user.username }}!</li>
               <li><a href="/logout" style="color: hsl(59, 85%, 51%); color:black; margin-right: 10px;">Logout</a></li>
             </ul>
@@ -48,7 +51,6 @@ body{
         </div>
       </div>
     </nav>
-    {%block page%}
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <nav class="white black-text" style="padding: 10px">
